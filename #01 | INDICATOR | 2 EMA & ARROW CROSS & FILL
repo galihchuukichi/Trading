@@ -1,0 +1,30 @@
+// versi 5 by Zona Corp.
+//@version=5
+indicator("#01 | INDICATOR | 2 EMA & ARROW CROSS & FILL", "#01", overlay=true)
+
+len1 = input.int(defval = 200, title = 'DATA LENGTH 1', minval = 100)
+len2 = input.int(defval = 7, title = 'DATA LENGTH 2', minval = 3)
+tipe = input(close, 'DATA TYPE PER CANDLE')
+inputData1 = ta.ema(tipe,len1) 
+inputData2 = ta.ema(tipe,len2)
+
+crossUpBool = ta.crossover(inputData2,inputData1)
+crossDownBool = ta.crossunder(inputData2,inputData1)
+
+crossUp = 0
+crossDown = 0
+
+if crossUpBool
+    crossUp := 1
+if crossDownBool
+    crossDown := 1
+
+plotarrow(crossUp - crossDown, colorup = color.green, colordown = color.red)
+// plotarrow(crossVal,colorup = color.green, offset = -3)
+// plotarrow(crossOverDown, colordown = color.red, offset = 3)
+
+fill_strong = plot(inputData1, color = color.yellow, title = 'STRONG')
+fill_weak = plot(inputData2, color = color.white, title = 'WEAK') 
+
+fill(fill_weak,fill_strong, inputData1 < inputData2 ? color.new(color.green, 50) : na)
+fill(fill_strong,fill_weak, inputData1 > inputData2 ? color.new(color.red, 50) : na)
