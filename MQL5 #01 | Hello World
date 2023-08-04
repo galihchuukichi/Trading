@@ -1,0 +1,57 @@
+//+------------------------------------------------------------------+
+//|                                                     #01_MQL5.mq5 |
+//|                                                             Saya |
+//|                                             https://www.mql5.com |
+//+------------------------------------------------------------------+
+#property copyright "Saya"
+#property link      "https://www.mql5.com"
+#property version   "1.00"
+
+//TEMPLATE
+#include <Trade/Trade.mqh>
+CTrade   *Trade;
+
+
+
+input int                  InpMagicNumber    = 2000001;
+input string               InpTradeComment   = __FILE__;
+input ENUM_APPLIED_PRICE   InAppliedPrice    = PRICE_CLOSE;
+// TEMPLATE DONE
+
+int tickCnt  = 0;
+
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+  {
+//---
+   Print("HELLO WORLD");
+   
+   
+   
+//---
+   return(INIT_SUCCEEDED);
+  }
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+  {
+//---
+   
+  }
+//+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+  {
+//---
+   tickCnt++;
+   Comment("\n \rExpert : ", InpMagicNumber, "\n\r",
+           "MT5 Server Time : ", TimeCurrent(), "\n\r",
+           "Ticks Cnt : ", tickCnt, "\n\r\n\r",
+           "Symbols Traded : \n\r", Symbol());
+  }
+//+------------------------------------------------------------------+
