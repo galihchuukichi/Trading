@@ -27,8 +27,9 @@ int tickCnt  = 0;
 int OnInit()
   {
 //---
-   Print("HELLO WORLD");
-   
+   Print("HAI GALIH! ~ READY FOR BACKTESTING? >///<");
+   Trade = new CTrade();
+   Trade.SetExpertMagicNumber(InpMagicNumber);
    
    
 //---
